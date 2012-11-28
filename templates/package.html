@@ -1,0 +1,66 @@
+{% include 'head.html' %}
+{% include 'menu.html' %}
+
+    <div class="container">
+      <div class="content">
+
+       <h2>Package</h2><br>
+
+        <table class="table">
+        <tr>
+          <td width=250><b>label</b></td>
+          <td>
+              <font color='{% if package.status == '0' %}#0C0{% else %}red{% endif %}'>
+                  {{ package.label }}
+              </font>
+          </td>
+        </tr>
+
+        <tr>
+          <td width=250><b>build</b></td>
+          <td>
+            <a href="{% url build_view package.build.id %}">{{ package.build }}</a>
+          </td>
+        </tr>
+
+        <tr>
+            <td width=250><b>arch</b></td>
+            <td>
+                {{ package.arch }}
+            </td>
+        </tr>
+
+        <tr>
+            <td width=250><b>release</b></td>
+            <td>
+                {{ package.release }}
+            </td>
+        </tr>
+
+
+        <tr>
+          <td><b>create_date</b></td>
+          <td>{{ package.created }}</td>
+        </tr>
+
+        <tr>
+          <td><b>update_date</b></td>
+          <td>{{ package.modified }}</td>
+        </tr>
+
+        <tr>
+          <td><b>return_code</b></td>
+          <td>{{ package.status }}</td>
+        </tr>
+        
+        <tr>
+          <td><b>log</b></td>
+          <td><pre>{{ package.log }}</pre></td>
+        </tr>
+        
+      </table>
+      
+      </div>
+    </div>
+
+{% include 'foot.html' %}

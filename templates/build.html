@@ -1,0 +1,35 @@
+{% include 'head.html' %}
+{% include 'menu.html' %}
+
+    <div class="container">
+      <div class="content">
+
+       <h2>Build</h2><br>
+
+        <table class="table">
+        <tr>
+          <td width=250><b>label</b></td>
+          <td>{{ build.label }}</td>
+        </tr>
+
+        <tr>
+        <td><b>Packages</b></td>
+        <td>
+        {% for package in packages %}
+            <p><a href="{%  url package_view package.id %}">
+                <font color='{% if package.status == '0' %}#0C0{% else %}red{% endif %}'>
+                    {{ package }}.{{ package.arch }}
+                </font>
+            </a>
+                - [ {{ package.created }} ]
+            </p>
+        {% endfor %}
+        </td>
+        </tr>
+        
+      </table>
+      
+      </div>
+    </div>
+
+{% include 'foot.html' %}

@@ -1,0 +1,34 @@
+{% include 'head.html' %}
+{% include 'menu.html' %}
+
+    <div class="container">
+      <div class="content">
+
+       <table class="table table-striped" id="table">
+        <thead><tr>
+          <th><b>Build <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+        </tr></thead>
+        
+        <tbody>
+        {% for build in builds %}
+        <tr>
+          
+          <!-- Task object with correct color -->
+          <td>
+            <a href='{% url build_view build.id %}'>
+                {{ build }}
+            </a>
+          </td>
+          
+        </tr>
+        {% endfor %}
+    
+        </tbody>
+      </table>
+       
+      {% include 'dataTables.html' %}
+      
+      </div>
+    </div>
+
+{% include 'foot.html' %}

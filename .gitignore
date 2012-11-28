@@ -1,0 +1,7 @@
+*.db
+*.sql
+settings.py
+*.pyc
+.coverage
+htmlcov
+database.sqlite

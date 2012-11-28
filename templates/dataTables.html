@@ -1,0 +1,18 @@
+<script>   
+$(document).ready(function() {
+    $('#table').dataTable({
+      "aaSorting": [[ 3, "desc" ]],
+      'iDisplayLength': 15,
+      "sDom": "<'row'<'span6'>r><'pull-right'f><'row'<'span6'l><'span6'>r>t<'row'<'span6'i><'span6'p>>",
+      "bLengthChange": false,
+      "oLanguage": {
+        "sSearch": "",
+        "oPaginate": {
+            "sPrevious": "<i class='icon-arrow-left'></i>",
+            "sNext": "<i class='icon-arrow-right'></i>",
+        }}
+    });
+    $('.dataTables_filter input').attr("placeholder", "Filter Results");
+    $('.dataTables_filter input').attr("class", "span2");
+});
+</script>

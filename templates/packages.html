@@ -1,0 +1,61 @@
+{% include 'head.html' %}
+{% include 'menu.html' %}
+
+    <div class="container">
+      <div class="content">
+
+      {% if title %}
+        <h2>{{ title }}</h2>
+      {% endif %}
+
+       <table class="table table-striped" id="table">
+        <thead><tr>
+          <th><b>Package <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+          <th><b>Build <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+          <th><b>Arch <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+          <th><b>Return Code <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+          <th><b>Created Date <a href="#"><i class="icon-resize-vertical"></i></a></b></th>
+        </tr></thead>
+        
+        <tbody>
+        {% for package in packages %}
+        <tr>
+          
+          <!-- Task object with correct color -->
+          <td>
+            <a href='{% url package_view package.id %}'>
+                <font color='{% if package.status == '0' %}#0C0{% else %}red{% endif %}'>
+                   {{ package }}
+                </font>
+            </a>
+          </td>
+          
+          <!-- Build object -->
+          <td>
+            <a href="{% url build_view package.build.id %}">{{ package.build }}</a>
+          </td>
+
+        <!-- Arch object -->
+        <td>
+            {{ package.arch }}
+        </td>
+          
+          <!-- return code for all packages status -->
+          <td>{{ package.status }}</td>
+          
+          <!-- latest packages update_date -->
+          <td>{{ package.created }}</td>
+          
+          
+        </tr>
+        {% endfor %}
+    
+        </tbody>
+      </table>
+       
+      {% include 'dataTables.html' %}
+      
+      </div>
+    </div>
+
+{% include 'foot.html' %}

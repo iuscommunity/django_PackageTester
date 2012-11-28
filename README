@@ -1,0 +1,9 @@
+Project: django_ius_package_tester
+Author: Jeffrey Ness <jeffrey.ness@rackspace.com>
+
+* Dependencies
+
+    Django
+    repoParser
+    django-tastypie
+    MySQL-python (if using a MySQL Model)

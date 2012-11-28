@@ -1,0 +1,19 @@
+{% include 'head.html' %}
+{% include 'menu.html' %}
+
+    <div class="container">
+      <div class="content">
+        
+        <h3>Login to Package Tester</h3><br>
+        <form name="login" action="{% url login_view %}" method="POST">
+        {% csrf_token %}
+          <label for="id_username">Username</label> <input id="id_username" type="text" name="username" maxlength="30" />
+          <label for="id_password">Password</label> <input type="password" name="password" id="id_password" />
+            
+        <p><button class="btn btn-success" type="submit">Login</button></p>
+        </form>
+
+       </div>
+    </div>
+
+{% include 'foot.html' %}
