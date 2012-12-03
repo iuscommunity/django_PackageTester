@@ -38,7 +38,8 @@ def package(request, package_id):
 def build(request, build_id):
     content = dict(settings=settings)
     build = Build.objects.get(id=build_id)
-    packages = Package.objects.filter(build=build).order_by('-created')
+    # lets only display the last 20 packages
+    packages = Package.objects.filter(build=build).order_by('-created')[0:20]
     content['build'] = build
     content['packages'] = packages
     return render(request, 'build.html', content)
