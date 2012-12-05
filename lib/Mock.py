@@ -11,6 +11,13 @@ class Mock:
         returncode = process.wait()
         message = process.communicate()
         return (returncode, message)
+    
+    def scrub(self, release, arch):
+        'scrub a new env'
+        command = ['mock', '-r', 'ius-testing-el%s-%s' % (release, arch),
+                   '--scrub=all']
+        returncode, message = self.__run(command)
+        return (returncode, message)
 
     def __initialize(self, release, arch):
         'init a new mock env'

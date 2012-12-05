@@ -32,6 +32,8 @@ def main():
         LOGGER.info('Working on release %s' % release)
         for arch in ARCHS:
             LOGGER.info('Working on arch %s' % arch)
+            LOGGER.info('Scrub %s %s, please wait...' % (release, arch))
+            MOCK.scrub(release, arch)
             parser = getParser(release, arch)
             for item in parser.getList():
                 name = item['name'][0]
