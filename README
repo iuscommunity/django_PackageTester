@@ -1,7 +1,7 @@
-
 * Dependencies
 
     Django
     repoParser
     django-tastypie
+    mimeparse
     MySQL-python (if using a MySQL Model)
