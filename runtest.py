@@ -11,7 +11,6 @@ from lib.Logger import get_logger
 from package_tester.models import Build, Package, Release, Arch
 
 DL = 'http://dl.iuscommunity.org/pub/ius/testing/Redhat'
-ARCHS = ['i386', 'x86_64']
 LOGGER = get_logger()
 MOCK = Mock()
 
@@ -20,6 +19,14 @@ def getReleases():
     res = urlopen(DL).read()
     releases = compile('<td><a href="(\d+)/">\d+/</a></td>').findall(res)
     return releases
+
+def getArchitectures(release):
+    DLRELEASE = '%s/%s' % (DL, release)
+    LOGGER.info('Getting architectures from %s' % DLRELEASE)
+    res = urlopen(DLRELEASE).read()
+    architectures = compile('<td><a href="(.+?)/">.+?/</a></td>').findall(res)
+    architectures.remove('SRPMS')
+    return architectures
 
 def getParser(release, arch):
     file = '%s/%s/%s/repodata/primary.xml.gz' % (DL, release, arch)
@@ -30,7 +37,7 @@ def getParser(release, arch):
 def main():
     for release in getReleases():
         LOGGER.info('Working on release %s' % release)
-        for arch in ARCHS:
+        for arch in getArchitectures(release)
             LOGGER.info('Working on arch %s' % arch)
             LOGGER.info('Scrub %s %s, please wait...' % (release, arch))
             MOCK.scrub(release, arch)
