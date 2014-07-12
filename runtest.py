@@ -37,7 +37,7 @@ def getParser(release, arch):
 def main():
     for release in getReleases():
         LOGGER.info('Working on release %s' % release)
-        for arch in getArchitectures(release)
+        for arch in getArchitectures(release):
             LOGGER.info('Working on arch %s' % arch)
             LOGGER.info('Scrub %s %s, please wait...' % (release, arch))
             MOCK.scrub(release, arch)
