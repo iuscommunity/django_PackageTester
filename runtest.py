@@ -35,6 +35,7 @@ def getParser(release, arch):
     return parser
 
 def main():
+    failcount = 0
     for release in getReleases():
         LOGGER.info('Working on release %s' % release)
         for arch in getArchitectures(release):
@@ -50,7 +51,8 @@ def main():
                 full_package = '%s-%s-%s' % (name, ver, rel)
                 LOGGER.info('Installing package: %s' % full_package)
                 returncode, output = MOCK.install(release, arch, full_package)
-
+                if returncode != 0:
+                    failcount += 1
                 LOGGER.info('Mock returned status %s' % returncode)
 
                 build_object, created = Build.objects.get_or_create(label=name)
@@ -60,6 +62,12 @@ def main():
                                           release=release_object, status=returncode, log=output[1])
 
                 LOGGER.info('Updating Database')
+
+    if failcount > 0:
+        LOGGER.error('%s package(s) failed to install.', failcount)
+        sys.exit(1)
+    else:
+        LOGGER.info('All packages installed successfully.')
 
 if __name__ == "__main__":
     main()
