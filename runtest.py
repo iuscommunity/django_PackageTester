@@ -9,6 +9,7 @@ from re import compile
 from lib.Mock import Mock
 from lib.Logger import get_logger
 from package_tester.models import Build, Package, Release, Arch
+from sys import exit
 
 DL = 'http://dl.iuscommunity.org/pub/ius/testing/Redhat'
 LOGGER = get_logger()
@@ -65,7 +66,7 @@ def main():
 
     if failcount > 0:
         LOGGER.error('%s package(s) failed to install.', failcount)
-        sys.exit(1)
+        exit(1)
     else:
         LOGGER.info('All packages installed successfully.')
 
