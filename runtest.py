@@ -18,14 +18,14 @@ MOCK = Mock()
 def getReleases():
     LOGGER.info('Getting releases from %s' % DL)
     res = urlopen(DL).read()
-    releases = compile('<td><a href="(\d+)/">\d+/</a></td>').findall(res)
+    releases = compile('<a href="(\d+)/">\d+/</a>').findall(res)
     return releases
 
 def getArchitectures(release):
     DLRELEASE = '%s/%s' % (DL, release)
     LOGGER.info('Getting architectures from %s' % DLRELEASE)
     res = urlopen(DLRELEASE).read()
-    architectures = compile('<td><a href="(.+?)/">.+?/</a></td>').findall(res)
+    architectures = compile('<a href="(.+?)/">.+?/</a>').findall(res)
     architectures.remove('SRPMS')
     return architectures
 
