@@ -25,7 +25,7 @@ def getArchitectures(release):
     DLRELEASE = '%s/%s' % (DL, release)
     LOGGER.info('Getting architectures from %s' % DLRELEASE)
     res = urlopen(DLRELEASE).read()
-    architectures = compile('<a href="(.+?)/">.+?/</a>').findall(res)
+    architectures = compile('<a href="(.+?)/">.+?/</a>.+-').findall(res)
     architectures.remove('SRPMS')
     return architectures
 
