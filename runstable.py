@@ -11,7 +11,7 @@ from lib.Logger import get_logger
 from package_tester.models import Build, Package, Release, Arch
 from sys import exit
 
-repo = 'testing'
+repo = 'stable'
 DL = 'https://dl.iuscommunity.org/pub/ius/%s/CentOS/' % (repo)
 LOGGER = get_logger()
 MOCK = Mock()
@@ -43,7 +43,8 @@ def main():
         for arch in getArchitectures(release):
             LOGGER.info('Working on arch %s' % arch)
             LOGGER.info('Scrub %s %s, please wait...' % (release, arch))
-            MOCK.scrub(repo, release, arch)
+            # stable packages should tested against the stable and devel repos
+            MOCK.scrub('developemnt', release, arch)
             parser = getParser(release, arch)
             for item in parser.getList():
                 name = item['name'][0]
@@ -52,7 +53,8 @@ def main():
 
                 full_package = '%s-%s-%s' % (name, ver, rel)
                 LOGGER.info('Installing package: %s' % full_package)
-                returncode, output = MOCK.install(repo, release, arch, full_package)
+                # stable packages should tested against the stable and devel repos
+                returncode, output = MOCK.install('development', release, arch, full_package)
                 if returncode != 0:
                     failcount += 1
                 LOGGER.info('Mock returned status %s' % returncode)

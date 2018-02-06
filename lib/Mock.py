@@ -12,24 +12,24 @@ class Mock:
         message = process.communicate()
         return (returncode, message)
 
-    def scrub(self, release, arch):
+    def scrub(self, repo, release, arch):
         'scrub a new env'
-        command = ['/usr/bin/mock', '-r', 'ius-testing-el%s-%s' % (release, arch),
+        command = ['/usr/bin/mock', '-r', 'ius-%s-el%s-%s' % (repo, release, arch),
                    '--scrub=all']
         returncode, message = self.__run(command)
         return (returncode, message)
 
-    def __initialize(self, release, arch):
+    def __initialize(self, repo, release, arch):
         'init a new mock env'
-        command = ['/usr/bin/mock', '-r', 'ius-testing-el%s-%s' % (release, arch),
+        command = ['/usr/bin/mock', '-r', 'ius-%s-el%s-%s' % (repo, release, arch),
                    '--init']
         returncode, message = self.__run(command)
         return (returncode, message)
 
-    def install(self, release, arch, package):
+    def install(self, repo, release, arch, package):
         'build a package in our new env'
         self.__initialize(release, arch)
-        command = ['/usr/bin/mock', '-r', 'ius-testing-el%s-%s' % (release, arch),
+        command = ['/usr/bin/mock', '-r', 'ius-%s-el%s-%s' % (repo, release, arch),
                    '--install', package]
         returncode, message = self.__run(command)
         return (returncode, message)

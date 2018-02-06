@@ -11,7 +11,7 @@ from lib.Logger import get_logger
 from package_tester.models import Build, Package, Release, Arch
 from sys import exit
 
-repo = 'testing'
+repo = 'developemnt'
 DL = 'https://dl.iuscommunity.org/pub/ius/%s/CentOS/' % (repo)
 LOGGER = get_logger()
 MOCK = Mock()
