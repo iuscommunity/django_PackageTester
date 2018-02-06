@@ -28,7 +28,7 @@ class Mock:
 
     def install(self, repo, release, arch, package):
         'build a package in our new env'
-        self.__initialize(release, arch)
+        self.__initialize(repo, release, arch)
         command = ['/usr/bin/mock', '-r', 'ius-%s-el%s-%s' % (repo, release, arch),
                    '--install', package]
         returncode, message = self.__run(command)
