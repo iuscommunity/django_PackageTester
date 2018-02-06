@@ -44,7 +44,7 @@ def main():
             LOGGER.info('Working on arch %s' % arch)
             LOGGER.info('Scrub %s %s, please wait...' % (release, arch))
             # stable packages should tested against the stable and devel repos
-            MOCK.scrub('developemnt', release, arch)
+            MOCK.scrub('development', release, arch)
             parser = getParser(release, arch)
             for item in parser.getList():
                 name = item['name'][0]
