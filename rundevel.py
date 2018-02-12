@@ -12,7 +12,7 @@ from package_tester.models import Build, Package, Release, Arch
 from sys import exit
 
 repo = 'development'
-DL = 'https://dl.iuscommunity.org/pub/ius/%s/CentOS/' % (repo)
+DL = 'https://dl.iuscommunity.org/pub/ius/%s/CentOS' % (repo)
 LOGGER = get_logger()
 MOCK = Mock()
 
